@@ -1,1 +1,0 @@
-print("MPG: ",int(input("Nhap so mile: ")) / int(input("Nhap so gallons: ")))

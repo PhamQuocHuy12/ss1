@@ -1,6 +1,0 @@
-a = float(input("Please enter the total purchase: "))
-print("The amount of purchase: ", a)
-print("The state sales tax: ", a/100*5)
-print("The country sales tax: ", a/100*2.5)
-print("Total taxes: ", a/100*5 + a/100*2.5)
-print("total of the sale: ", a + a/100*5 + a/100*2.5)
