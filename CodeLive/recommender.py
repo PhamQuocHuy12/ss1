@@ -25,7 +25,7 @@ def averages(userList , bookList):
         book_rate.append([book, avg])
         print("Book: " + str(book) + "  |Rate: " + str(avg))
 
-    sorted(book_rate, key=lambda x: book_rate[1])
+    sorted(book_rate, key=lambda x: x[1])
     print(book_rate)
     print("em dang sort do thay a")
 
