@@ -6,6 +6,8 @@ def recommend(userList, bookList):
             print("User:" + userName)
             for i in range(len(rate)):
                 print("Book: " + str(bookList[i]) + "  |Rate: " + str(rate[i]))
+        else:
+            averages(userList,bookList)
     except Exception as e:
         print(e)
         print('User not available! Please try again!')
