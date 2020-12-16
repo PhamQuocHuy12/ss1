@@ -11,7 +11,7 @@ def recommend(userList, bookList):
     except Exception as e:
         print(e)
         print('User not available! Please try again!')
-        averages(bookList)
+        
 
 def averages(userList , bookList):
     book_rate = []
