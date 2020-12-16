@@ -11,85 +11,76 @@ def recommend(userList, bookList):
         print('User not available! Please try again!')
         averages(bookList)
 
-def averages(bookList):
-    avg = [0] * len(bookList)
-    for x in dict:
-        zipped = zip(avg, dict[x])
-        avg = [x + y for (x,y) in zipped]
-    print(bookList)
-    print(avg)
-    for i in range(len(avg)):
-        print("Book: " + str(bookList[i]) + "  |Rate: " + str(avg[i]))
+def averages(userList , bookList):
+    book_rate = []
+    for book in bookList:
+        index = bookList.index(book)
+        count = 0
+        avg = 0
+        for x in dict:
+            avg += dict[x][index]
+            if dict[x][index] != 0:
+                count+=1
+        avg = avg/ count
+        book_rate.append([book, avg])
+        print("Book: " + str(book) + "  |Rate: " + str(avg))
 
-
+    sorted(book_rate, key=lambda x: book_rate[1])
+    print(book_rate)
+    print("em dang sort do thay a")
 
 
 if __name__ == "__main__":
+    # READ FILE -------------------------------------------------------------------------
     file = []
     with open("ratings-small.txt", 'r') as reader:
         for line in reader:
             file.append(line.split('\n')[0])
-    print(file)
 
-
+    # CREATE BOOK LIST ------------------------------------------------------------------
     bookList = []
     count = 1
     while count < len(file):
         bookList.append(file[count])
         count += 3
     bookList = list(dict.fromkeys(bookList))
-    print(bookList)
 
-
+    #CREATE USER LIST ------------------------------------------------------------------
     userList = []
     count = 0
     while count < len(file):
         userList.append(file[count])
         count += 3
     userList = list(dict.fromkeys(userList))
-    print(userList)
 
-
+    # GENERATE DICT -------------------------------------------------------------------
     dict = {user : [0]*len(bookList) for user in userList}
-    print(dict)
-
-
-    # for element in file:
-    #     if element in userList:
-    #         index = file.index(element)
-    #         bookIndex = bookList.index(file[index +1])
-    #         print(index)
-    #         print(bookIndex)
-    #         rate_point = int(file[index + 2])
-    #         print(rate_point)
-    #         print("--------------")
-    #         dict[element][bookIndex] += rate_point
-    # print(dict)
 
     for i in range(len(file)):
         if file[i] in userList:
             index = i
             bookIndex = bookList.index(file[index +1])
-            print(index)
-            print(bookIndex)
             rate_point = int(file[index + 2])
-            print(rate_point)
-            print("--------------")
             dict[file[i]][bookIndex] += rate_point
-    print(dict)
 
-
+    # MAIN --------------------------------------------------------------------------
     print("Welcome to the CSC110 Book recommendatior, type the word in the \n"
           "left column to to the action.\n"
           "recommend: recommend the books for paricular user\n"
           "averages: output the average ratings of all books in the system\n"
-          "quit: exit\n"
-          "next task ?")
-    command = input()
-    print("next task ?")
-    if command == "recommend":
-        recommend(userList, bookList)
-    if command == "averages":
-        averages(bookList)
+          "quit: exit\n")
+    eXit = False
+    while(eXit == False):
+        command = input()
+
+        if command == "recommend":
+            recommend(userList, bookList)
+            print("next task ?")
+        if command == "averages":
+            averages(userList, bookList)
+            print("next task ?")
+        if command== "exit":
+            eXit = True
+            print("goodbye")
 
 
